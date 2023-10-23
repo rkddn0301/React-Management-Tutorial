@@ -6,6 +6,18 @@ import TableHead from "@mui/material/TableHead";
 import TableBody from "@mui/material/TableBody";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
+// import { withStyles } from "@mui/styles";
+
+const styles = (theme) => ({
+  root: {
+    width: "100%",
+    marginTop: theme.spacing.unit * 3,
+    overflowX: "auto",
+  },
+  table: {
+    minWidth: 1080,
+  },
+});
 
 const customers = [
   {
@@ -35,6 +47,7 @@ const customers = [
 ];
 
 function App() {
+  //const { classes } = this.props;
   return (
     <Paper sx={{ overflowX: "auto" }}>
       <Table stickyHeader sx={{ maxWidth: "1080px", minWidth: "1080px" }}>
