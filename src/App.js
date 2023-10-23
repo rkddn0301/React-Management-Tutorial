@@ -7,34 +7,27 @@ import TableBody from "@mui/material/TableBody";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 
-const customers = [
-  {
-    id: 1,
-    image: "http://placehold.it/64x64",
-    name: "강우석",
-    birthday: "980301",
-    gender: "남자",
-    job: "회사원",
-  },
-  {
-    id: 2,
-    image: "http://placehold.it/64x64",
-    name: "홍길동",
-    birthday: "001211",
-    gender: "남자",
-    job: "대학생",
-  },
-  {
-    id: 3,
-    image: "http://placehold.it/64x64",
-    name: "순심이",
-    birthday: "701231",
-    gender: "여자",
-    job: "디자이너",
-  },
-];
+
 
 function App() {
+
+  state = {
+    customers: ""
+  }
+  
+  componentDidMount() { // callApi에서 가져온 데이터(body)를 state 변수에 삽입
+    this.callApi()
+      .then(res => this.setState({customers: res}))
+      .catch(err => console.log(err));
+  }
+  
+  callApi = async () => { // server.js에 넣어둔 json 데이터 가져오기
+    const response = await fetch('/api/customers');
+    const body = await response.json(); // response 변수를 json 형식으로 변환
+    return body;
+  
+  }
+
   return (
     <Paper sx={{ overflowX: "auto" }}>
       <Table stickyHeader sx={{ maxWidth: "1080px", minWidth: "1080px" }}>
@@ -49,9 +42,9 @@ function App() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {customers.map((c) => {
+          {this.state.customers ? this.state.customers.map((c) => {
             return (
-              <Customer
+              <Customer key={c.id}
                 id={c.id}
                 image={c.image}
                 name={c.name}
@@ -60,7 +53,7 @@ function App() {
                 job={c.job}
               />
             );
-          })}
+          }) : ""}
         </TableBody>
       </Table>
     </Paper>
