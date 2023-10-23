@@ -1,9 +1,11 @@
 import React from "react";
+import TableRow from "@mui/material/TableRow";
+import TableCell from "@mui/material/TableCell";
 
 class Customer extends React.Component {
   render() {
     return (
-      <div>
+      /*<div>
         <CustomerProfile
           id={this.props.id}
           image={this.props.image}
@@ -14,12 +16,22 @@ class Customer extends React.Component {
           gender={this.props.gender}
           job={this.props.job}
         />
-      </div>
+      </div>*/
+      <TableRow>
+        <TableCell>{this.props.id}</TableCell>
+        <TableCell>
+          <img src={this.props.image} alt="profile" />
+        </TableCell>
+        <TableCell>{this.props.name}</TableCell>
+        <TableCell>{this.props.birthday}</TableCell>
+        <TableCell>{this.props.gender}</TableCell>
+        <TableCell>{this.props.job}</TableCell>
+      </TableRow>
     );
   }
 }
 
-class CustomerProfile extends React.Component {
+/*class CustomerProfile extends React.Component {
   render() {
     return (
       <div>
@@ -42,6 +54,6 @@ class CustomerInfo extends React.Component {
       </div>
     );
   }
-}
+}*/
 
 export default Customer;
